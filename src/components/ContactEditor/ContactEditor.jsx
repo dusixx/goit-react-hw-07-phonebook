@@ -47,9 +47,11 @@ export const ContactEditor = () => {
     if (isContactExists(data)) return toast.error(ALREADY_EXISTS);
 
     setIsWorking(true);
-    addContact(data).then(() => setIsWorking(false));
-    resetForm();
-    toast.success(ADDED_SUCCESS);
+    addContact(data).then(() => {
+      setIsWorking(false);
+      resetForm();
+      toast.success(ADDED_SUCCESS);
+    });
   };
 
   return (
@@ -83,7 +85,7 @@ export const ContactEditor = () => {
         />
 
         <Button type="submit">
-          {isWorking && <SpinnerLines width={25} strokeColor="white" />}
+          {isWorking && <SpinnerLines width={20} strokeColor="white" />}
           {!isWorking && (
             <>
               <IconUserPlus size="20px" />

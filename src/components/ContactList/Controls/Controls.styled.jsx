@@ -6,6 +6,7 @@ export const ControlsList = styled.ul`
   ${FlexCentered('gap: 5px')};
   height: ${({ height }) => calcCSSValue(height) || '100%'};
   width: 100%;
+  user-select: none;
 `;
 
 export const Control = styled.li`
@@ -27,4 +28,5 @@ export const Processing = styled.div`
   height: 100%;
   font-size: 12px;
   color: rgb(0 0 0 / 0.8);
+  user-select: none;
 `;

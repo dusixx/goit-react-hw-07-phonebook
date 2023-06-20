@@ -16,5 +16,5 @@ export const Button = styled(ButtonPrimary)`
   margin: 0 auto 0 auto;
   padding: 0;
   min-width: 80px;
-  height: 40px;
+  height: 35px;
 `;
