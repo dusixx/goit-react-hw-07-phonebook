@@ -4,9 +4,8 @@ import { ContactEditor } from 'components/ContactEditor';
 import { ContactList } from 'components/ContactList';
 import { Filter } from 'components/Filter';
 import { Header } from 'components/Header';
-import { useContacts } from 'redux/hooks';
-import { useEffect } from 'react';
 import { SpinnerLines } from 'components/SpinnerLines';
+import { useFetchContacts } from 'hooks/useFetchContacts';
 
 const NO_CONTACTS = 'There are no contacts in the phone book yet';
 const Error = ({ message }) => {
@@ -18,16 +17,7 @@ const Error = ({ message }) => {
 //
 
 export const App = () => {
-  const {
-    items: contacts,
-    pendingAction,
-    error,
-    fetchContacts,
-  } = useContacts();
-
-  useEffect(() => {
-    fetchContacts();
-  }, [fetchContacts]);
+  const { items: contacts, pendingAction, error } = useFetchContacts();
 
   return (
     <Container>
