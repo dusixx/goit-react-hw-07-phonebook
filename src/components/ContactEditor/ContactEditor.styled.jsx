@@ -14,5 +14,7 @@ export const Form = styled.form`
 
 export const Button = styled(ButtonPrimary)`
   margin: 0 auto 0 auto;
-  width: 110px;
+  padding: 0;
+  min-width: 80px;
+  height: 40px;
 `;

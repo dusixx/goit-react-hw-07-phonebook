@@ -91,3 +91,25 @@ export const Block = styled.div`
   border-radius: var(--border-radius);
   overflow: auto;
 `;
+
+export const Spinner = styled.span`
+  display: inline-block;
+  width: ${({ size }) => calcCSSValue(size)};
+  height: ${({ size }) => calcCSSValue(size)};
+
+  border: 2px solid #000;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+
+  animation: rotation 1.5s linear infinite;
+  opacity: 0.6;
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;

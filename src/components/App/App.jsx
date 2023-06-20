@@ -1,25 +1,55 @@
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { Container } from './App.styled';
 import { ContactEditor } from 'components/ContactEditor';
 import { ContactList } from 'components/ContactList';
 import { Filter } from 'components/Filter';
 import { Header } from 'components/Header';
+import { useContacts } from 'redux/hooks';
+import { useEffect } from 'react';
+import { SpinnerLines } from 'components/SpinnerLines';
+
+const NO_CONTACTS = 'There are no contacts in the phone book yet';
+const Error = ({ message }) => {
+  toast.error(message);
+};
 
 //
 // App
 //
 
-export const App = () => (
-  <Container>
-    <Header />
-    <ContactEditor />
-    <Filter />
-    <ContactList rowHeight={40} controlsHeight="60%" />
+export const App = () => {
+  const {
+    items: contacts,
+    pendingAction,
+    error,
+    fetchContacts,
+  } = useContacts();
 
-    <ToastContainer
-      autoClose={1500}
-      position="top-center"
-      progressStyle={{ height: '3px' }}
-    />
-  </Container>
-);
+  useEffect(() => {
+    fetchContacts();
+  }, [fetchContacts]);
+
+  return (
+    <Container>
+      <Error message={error} />
+      <Header />
+      <ContactEditor />
+
+      {contacts.length > 0 && (
+        <>
+          <Filter />
+          <ContactList rowHeight={40} controlsHeight="60%" />
+        </>
+      )}
+
+      {contacts.length === 0 &&
+        (/fetchContacts/i.test(pendingAction) ? <SpinnerLines /> : NO_CONTACTS)}
+
+      <ToastContainer
+        autoClose={1500}
+        position="top-center"
+        progressStyle={{ height: '3px' }}
+      />
+    </Container>
+  );
+};

@@ -10,8 +10,8 @@ export const fieldData = {
   },
   number: {
     title:
-      'The number must be 7 digits long and may contain spaces and hyphens',
-    pattern: '^([\\s-]*\\d[\\s-]*){7}$',
+      'The number must be 10 digits long and may contain spaces and hyphens',
+    pattern: '^([\\s-]*\\d[\\s-]*){10}$',
     icon: IconPhone,
   },
 };

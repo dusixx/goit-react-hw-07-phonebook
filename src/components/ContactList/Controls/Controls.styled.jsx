@@ -21,3 +21,10 @@ export const ControlBtn = styled(ButtonBase)`
     color: var(--color-accent);
   }
 `;
+
+export const Processing = styled.div`
+  ${FlexCentered('gap: 5px')};
+  height: 100%;
+  font-size: 12px;
+  color: rgb(0 0 0 / 0.8);
+`;

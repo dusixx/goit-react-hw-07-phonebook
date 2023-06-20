@@ -2,9 +2,24 @@ import { string, oneOfType, number } from 'prop-types';
 import { Controls } from './Controls/Controls';
 import { controlsData } from './controlsData';
 import { List, Item, Column } from './ContactList.styled';
-import { useFilter, useContacts } from 'redux/hooks';
+import { useContacts, useFilter } from 'redux/hooks';
 import { Block } from 'styles/shared';
-import { useCallback } from 'react';
+
+//
+// helpers
+//
+
+const filterContacts = (contacts, filter) => {
+  const searchStr = filter?.trim().toLocaleLowerCase();
+
+  return searchStr
+    ? contacts?.filter(
+        ({ name, number }) =>
+          name.toLocaleLowerCase().includes(searchStr) ||
+          number.includes(searchStr)
+      )
+    : contacts;
+};
 
 //
 // ContactList
@@ -12,19 +27,7 @@ import { useCallback } from 'react';
 
 export const ContactList = ({ controlsHeight, rowHeight }) => {
   const { filter } = useFilter();
-  const { contacts } = useContacts();
-
-  const filterContacts = useCallback((contacts, filter) => {
-    const searchStr = filter?.trim().toLocaleLowerCase();
-
-    return searchStr
-      ? contacts?.filter(
-          ({ name, number }) =>
-            name.toLocaleLowerCase().includes(searchStr) ||
-            number.includes(searchStr)
-        )
-      : contacts;
-  }, []);
+  const { items: contacts } = useContacts();
 
   const filtered = filterContacts(contacts, filter);
   if (!filtered.length) return null;

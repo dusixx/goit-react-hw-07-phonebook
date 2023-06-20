@@ -7,6 +7,7 @@ import { useContacts } from 'redux/hooks';
 import { formatNumber } from 'utils';
 import { toast } from 'react-toastify';
 import { Block } from 'styles/shared';
+import { SpinnerLines } from 'components/SpinnerLines';
 
 const ALREADY_EXISTS = `The contact with the same name or number already exists`;
 const ADDED_SUCCESS = `The contact was added successfully`;
@@ -20,7 +21,8 @@ const formatName = s => s.trim().replace(/\s+/g, ' ');
 export const ContactEditor = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const { contacts, add } = useContacts();
+  const [isWorking, setIsWorking] = useState(false);
+  const { items: contacts, addContact } = useContacts();
 
   const resetForm = e => {
     setName('');
@@ -44,7 +46,8 @@ export const ContactEditor = () => {
 
     if (isContactExists(data)) return toast.error(ALREADY_EXISTS);
 
-    add(data);
+    setIsWorking(true);
+    addContact(data).then(() => setIsWorking(false));
     resetForm();
     toast.success(ADDED_SUCCESS);
   };
@@ -80,7 +83,13 @@ export const ContactEditor = () => {
         />
 
         <Button type="submit">
-          <IconUserPlus size="20px" /> Add
+          {isWorking && <SpinnerLines width={25} strokeColor="white" />}
+          {!isWorking && (
+            <>
+              <IconUserPlus size="20px" />
+              Add
+            </>
+          )}
         </Button>
       </Form>
     </Block>
