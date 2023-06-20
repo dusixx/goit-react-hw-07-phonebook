@@ -5,7 +5,7 @@ import { ContactList } from 'components/ContactList';
 import { Filter } from 'components/Filter';
 import { Header } from 'components/Header';
 import { SpinnerLines } from 'components/SpinnerLines';
-import { useFetchedContacts } from 'hooks/useFetchContacts';
+import { useFetchedContacts } from 'hooks/useFetchedContacts';
 
 const NO_CONTACTS = 'There are no contacts in the phone book yet';
 const Error = ({ message }) => {

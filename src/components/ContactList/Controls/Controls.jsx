@@ -32,7 +32,7 @@ export const Controls = ({ items, targetId, height }) => {
     return (
       <Processing>
         <SpinnerLines width={20} />
-        Working...
+        Deleting...
       </Processing>
     );
   }
