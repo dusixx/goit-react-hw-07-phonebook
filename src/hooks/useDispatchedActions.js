@@ -18,7 +18,5 @@ export const useDispatchedActions = actions => {
   // при каждом рендере в зависимостях. Иначе, зациклится
   memo.set(actions, dispatchedActions);
 
-  console.log(dispatchedActions);
-
   return dispatchedActions;
 };

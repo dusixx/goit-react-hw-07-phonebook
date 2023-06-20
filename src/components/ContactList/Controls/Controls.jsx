@@ -21,7 +21,7 @@ export const Controls = ({ items, targetId, height }) => {
     switch (controlName) {
       case 'delete':
         setIsWorking(true);
-        return deleteContact(id).then(() => setIsWorking(false));
+        return deleteContact(id).finally(() => setIsWorking(false));
 
       default:
         toast.warn(ACTION_NOT_SUPPORTED);

@@ -40,11 +40,14 @@ export const ContactEditor = () => {
     }
 
     setIsWorking(true);
-    addContact(data).then(() => {
-      setIsWorking(false);
-      resetForm();
-      toast.success(ADDED_SUCCESS);
-    });
+    addContact(data)
+      .then(() => {
+        resetForm();
+        toast.success(ADDED_SUCCESS);
+      })
+      .finally(() => {
+        setIsWorking(false);
+      });
   };
 
   return (
