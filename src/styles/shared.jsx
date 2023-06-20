@@ -49,12 +49,11 @@ export const ButtonPrimary = styled(ButtonBase)`
 
   background-color: var(--color-accent);
   border-radius: var(--border-radius);
-  transition-property: background-color;
+  transition-property: filter;
 
   &:focus-visible,
   &:hover {
-    background-color: #296ff0;
-    /* filter: brightness(1.1); */
+    filter: brightness(1.1);
   }
 `;
 

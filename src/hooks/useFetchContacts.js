@@ -1,7 +1,7 @@
 import { useContacts } from 'redux/hooks';
 import { useEffect } from 'react';
 
-export const useFetchContacts = () => {
+export const useFetchedContacts = () => {
   const { fetchContacts, ...rest } = useContacts();
 
   useEffect(() => {

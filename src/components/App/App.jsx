@@ -5,7 +5,7 @@ import { ContactList } from 'components/ContactList';
 import { Filter } from 'components/Filter';
 import { Header } from 'components/Header';
 import { SpinnerLines } from 'components/SpinnerLines';
-import { useFetchContacts } from 'hooks/useFetchContacts';
+import { useFetchedContacts } from 'hooks/useFetchContacts';
 
 const NO_CONTACTS = 'There are no contacts in the phone book yet';
 const Error = ({ message }) => {
@@ -17,7 +17,7 @@ const Error = ({ message }) => {
 //
 
 export const App = () => {
-  const { items: contacts, pendingAction, error } = useFetchContacts();
+  const { items: contacts, pendingAction, error } = useFetchedContacts();
 
   return (
     <Container>
