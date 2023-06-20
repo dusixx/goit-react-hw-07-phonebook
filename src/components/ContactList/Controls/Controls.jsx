@@ -5,7 +5,7 @@ import { useContacts } from 'redux/hooks';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { Processing } from './Controls.styled';
-import { SpinnerLines } from 'components/SpinnerLines';
+import { SpinnerLines } from 'components/SpinnerLines/SpinnerLines';
 
 const ACTION_NOT_SUPPORTED = 'Action not supported';
 

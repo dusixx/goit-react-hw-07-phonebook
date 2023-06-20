@@ -4,10 +4,10 @@ import { Form, Button } from './ContactEditor.styled';
 import { IconUserPlus } from 'styles/icons';
 import { fieldData } from './fieldData';
 import { useContacts } from 'redux/hooks';
-import { formatNumber } from 'utils';
 import { toast } from 'react-toastify';
 import { Block } from 'styles/shared';
-import { SpinnerLines } from 'components/SpinnerLines';
+import { SpinnerLines } from 'components/SpinnerLines/SpinnerLines';
+import { formatNumber, formatName, isContactExists } from 'utils';
 
 const ALREADY_EXISTS = `The contact with the same name or number already exists`;
 const ADDED_SUCCESS = `The contact was added successfully`;
@@ -15,8 +15,6 @@ const ADDED_SUCCESS = `The contact was added successfully`;
 //
 // ContactEditor
 //
-
-const formatName = s => s.trim().replace(/\s+/g, ' ');
 
 export const ContactEditor = () => {
   const [name, setName] = useState('');
@@ -29,13 +27,6 @@ export const ContactEditor = () => {
     setNumber('');
   };
 
-  const isContactExists = ({ name, number }) =>
-    contacts.find(
-      itm =>
-        itm.name.toLocaleLowerCase() === name.toLocaleLowerCase() ||
-        itm.number === number
-    );
-
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -44,7 +35,9 @@ export const ContactEditor = () => {
       number: formatNumber(number),
     };
 
-    if (isContactExists(data)) return toast.error(ALREADY_EXISTS);
+    if (isContactExists(contacts, data)) {
+      return toast.error(ALREADY_EXISTS);
+    }
 
     setIsWorking(true);
     addContact(data).then(() => {

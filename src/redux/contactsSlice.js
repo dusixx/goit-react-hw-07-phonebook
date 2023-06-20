@@ -19,6 +19,8 @@ const handleDeleteContactFulfilled = (state, { payload: { id } }) => {
   state.items = state.items.filter(itm => itm.id !== id);
 };
 
+// common
+
 const handleFulfilled = state => {
   state.pendingAction = state.error = null;
 };

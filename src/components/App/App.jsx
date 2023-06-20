@@ -4,13 +4,11 @@ import { ContactEditor } from 'components/ContactEditor';
 import { ContactList } from 'components/ContactList';
 import { Filter } from 'components/Filter';
 import { Header } from 'components/Header';
-import { SpinnerLines } from 'components/SpinnerLines';
+import { SpinnerLines } from 'components/SpinnerLines/SpinnerLines';
 import { useFetchedContacts } from 'hooks/useFetchedContacts';
 
 const NO_CONTACTS = 'There are no contacts in the phone book yet';
-const Error = ({ message }) => {
-  toast.error(message);
-};
+const Error = ({ message }) => void toast.error(message);
 
 //
 // App

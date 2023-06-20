@@ -1,3 +1,4 @@
+export * from './helpers';
 const toStr = Object.prototype.toString;
 
 // prove
@@ -25,9 +26,3 @@ export const cap = v => (isStr(v) && v ? v[0].toUpperCase() + v.slice(1) : '');
 
 let id = 0;
 export const getId = () => `${(id++).toString(24)}`;
-
-export const formatNumber = number => {
-  return number
-    .replace(/[\s-]/g, '')
-    .replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-};
