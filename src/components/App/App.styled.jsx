@@ -9,6 +9,7 @@ export const Container = styled.div`
 
   margin: 0 auto 0 auto;
   padding: 10px;
+  padding-top: 20px;
 
   width: ${({ width }) => calcCSSValue(width) || '100%'};
   min-width: 250px;
