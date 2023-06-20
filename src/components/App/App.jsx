@@ -31,7 +31,7 @@ export const App = () => {
       )}
 
       {items.length === 0 &&
-        (/fetchContacts/i.test(pendingAction) ? <SpinnerLines /> : NO_CONTACTS)}
+        (/fetchAll/i.test(pendingAction) ? <SpinnerLines /> : NO_CONTACTS)}
 
       <ToastContainer
         autoClose={1500}
