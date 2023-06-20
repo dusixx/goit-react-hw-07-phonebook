@@ -24,9 +24,13 @@ export const ControlBtn = styled(ButtonBase)`
 `;
 
 export const Processing = styled.div`
-  ${FlexCentered('gap: 5px')};
+  ${FlexCentered('gap: 4px')};
   height: 100%;
-  font-size: 12px;
+  font-size: 11px;
   color: rgb(0 0 0 / 0.8);
   user-select: none;
+
+  @media screen and (min-width: 360px) {
+    font-size: 12px;
+  }
 `;
