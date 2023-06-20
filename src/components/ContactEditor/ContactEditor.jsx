@@ -20,11 +20,23 @@ export const ContactEditor = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [isWorking, setIsWorking] = useState(false);
-  const { items, addContact } = useContacts();
+  const { items, addContact: add } = useContacts();
 
   const resetForm = e => {
     setName('');
     setNumber('');
+  };
+
+  const addContact = data => {
+    setIsWorking(true);
+    add(data)
+      .then(() => {
+        resetForm();
+        toast.success(ADDED_SUCCESS);
+      })
+      .finally(() => {
+        setIsWorking(false);
+      });
   };
 
   const handleSubmit = e => {
@@ -35,19 +47,8 @@ export const ContactEditor = () => {
       number: formatNumber(number),
     };
 
-    if (isContactExists(items, data)) {
-      return toast.error(ALREADY_EXISTS);
-    }
-
-    setIsWorking(true);
-    addContact(data)
-      .then(() => {
-        resetForm();
-        toast.success(ADDED_SUCCESS);
-      })
-      .finally(() => {
-        setIsWorking(false);
-      });
+    if (!isContactExists(items, data)) return addContact(data);
+    toast.error(ALREADY_EXISTS);
   };
 
   return (

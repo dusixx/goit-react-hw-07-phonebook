@@ -34,6 +34,10 @@ const handleRejected = (state, { payload: error }) => {
   state.error = error;
 };
 
+//
+// contactsSlice
+//
+
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
