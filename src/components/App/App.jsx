@@ -15,7 +15,7 @@ const Error = ({ message }) => void toast.error(message);
 //
 
 export const App = () => {
-  const { items: contacts, pendingAction, error } = useFetchedContacts();
+  const { items, pendingAction, error } = useFetchedContacts();
 
   return (
     <Container>
@@ -23,14 +23,14 @@ export const App = () => {
       <Header />
       <ContactEditor />
 
-      {contacts.length > 0 && (
+      {items.length > 0 && (
         <>
           <Filter />
           <ContactList rowHeight={40} controlsHeight="60%" />
         </>
       )}
 
-      {contacts.length === 0 &&
+      {items.length === 0 &&
         (/fetchContacts/i.test(pendingAction) ? <SpinnerLines /> : NO_CONTACTS)}
 
       <ToastContainer

@@ -4,11 +4,11 @@ import { filterContacts } from 'utils';
 
 export const useFilteredContacts = () => {
   const { filter } = useFilter();
-  const { items: contacts } = useContacts();
+  const { items } = useContacts();
 
   const filtered = useMemo(
-    () => filterContacts(contacts, filter),
-    [contacts, filter]
+    () => filterContacts(items, filter),
+    [items, filter]
   );
 
   return { filtered };

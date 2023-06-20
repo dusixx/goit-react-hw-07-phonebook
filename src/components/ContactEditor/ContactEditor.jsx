@@ -20,7 +20,7 @@ export const ContactEditor = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [isWorking, setIsWorking] = useState(false);
-  const { items: contacts, addContact } = useContacts();
+  const { items, addContact } = useContacts();
 
   const resetForm = e => {
     setName('');
@@ -35,7 +35,7 @@ export const ContactEditor = () => {
       number: formatNumber(number),
     };
 
-    if (isContactExists(contacts, data)) {
+    if (isContactExists(items, data)) {
       return toast.error(ALREADY_EXISTS);
     }
 
