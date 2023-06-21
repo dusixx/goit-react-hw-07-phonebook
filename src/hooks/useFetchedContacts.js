@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 
 export const useFetchedContacts = () => {
   const { fetchAll, ...rest } = useContacts();
-
-  useEffect(() => fetchAll(), [fetchAll]);
+  useEffect(() => void fetchAll(), [fetchAll]);
 
   return { ...rest };
 };

@@ -24,3 +24,15 @@ export const Column = styled.span`
   height: 100%;
   text-align: center;
 `;
+
+export const Processing = styled.div`
+  ${FlexCentered('gap: 4px')};
+  height: 100%;
+  font-size: 11px;
+  color: rgb(0 0 0 / 0.8);
+  user-select: none;
+
+  @media screen and (min-width: 360px) {
+    font-size: 12px;
+  }
+`;

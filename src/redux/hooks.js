@@ -29,6 +29,8 @@ export const useContacts = () => {
   const filtered = useSelector(selectFilteredContacts);
   const dispatchedThunks = useDispatchedActions(contactThunks);
 
+  console.log('useContacts');
+
   return {
     ...contacts,
     ...dispatchedThunks,
