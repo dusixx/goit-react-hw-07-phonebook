@@ -1,11 +1,11 @@
-import { string, oneOfType, number } from 'prop-types';
-import { Controls } from './Controls/Controls';
-import { controlsData } from './controlsData';
-import { List, Item, Column } from './ContactList.styled';
-import { Block } from 'styles/shared';
 import { useContacts } from 'redux/hooks';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { string, oneOfType, number } from 'prop-types';
+import { Block } from 'styles/shared';
+import { Controls } from './Controls/Controls';
+import { controlsData } from './controlsData';
+import { List, Item, Column } from './ContactList.styled';
 import { Processing } from './ContactList.styled';
 import { SpinnerLines } from 'components/SpinnerLines/SpinnerLines';
 
@@ -33,13 +33,20 @@ export const ContactList = ({ controlsHeight, rowHeight }) => {
   if (!filtered.length) return null;
 
   const isDeleting = /deleteContact/i.test(pendingAction);
+  const deletedItemStyle = {
+    backgroundColor: 'rgb(255 0 0 / 0.1)',
+  };
 
   return (
     <Block maxHeight="70vh">
       <List>
         {filtered.map(({ id, name, number }) => {
           return (
-            <Item key={id} height={rowHeight}>
+            <Item
+              key={id}
+              height={rowHeight}
+              style={clickedId === id && isDeleting ? deletedItemStyle : null}
+            >
               <Column>{name}</Column>
               <Column>{number}</Column>
               <Column>
