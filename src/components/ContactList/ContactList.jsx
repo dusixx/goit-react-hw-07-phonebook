@@ -32,7 +32,6 @@ export const ContactList = ({ controlsHeight, rowHeight }) => {
 
   if (!filtered.length) return null;
 
-  const isDeleting = /deleteContact/i.test(pendingAction);
   const deletedItemStyle = {
     backgroundColor: 'rgb(255 0 0 / 0.1)',
   };
@@ -41,16 +40,19 @@ export const ContactList = ({ controlsHeight, rowHeight }) => {
     <Block maxHeight="70vh">
       <List>
         {filtered.map(({ id, name, number }) => {
+          const isDeleted =
+            /deleteContact/i.test(pendingAction) && clickedId === id;
+
           return (
             <Item
               key={id}
               height={rowHeight}
-              style={clickedId === id && isDeleting ? deletedItemStyle : null}
+              style={isDeleted ? deletedItemStyle : null}
             >
               <Column>{name}</Column>
               <Column>{number}</Column>
               <Column>
-                {clickedId === id && isDeleting ? (
+                {isDeleted ? (
                   <Processing>
                     <SpinnerLines width={20} />
                     Deleting...
