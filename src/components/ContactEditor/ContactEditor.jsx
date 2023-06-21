@@ -19,8 +19,7 @@ const ADDED_SUCCESS = `The contact was added successfully`;
 export const ContactEditor = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const [isWorking, setIsWorking] = useState(false);
-  const { items, addContact: add } = useContacts();
+  const { items, pendingAction, addContact: add } = useContacts();
 
   const resetForm = e => {
     setName('');
@@ -28,15 +27,10 @@ export const ContactEditor = () => {
   };
 
   const addContact = data => {
-    setIsWorking(true);
-    add(data)
-      .then(() => {
-        resetForm();
-        toast.success(ADDED_SUCCESS);
-      })
-      .finally(() => {
-        setIsWorking(false);
-      });
+    add(data).then(() => {
+      resetForm();
+      toast.success(ADDED_SUCCESS);
+    });
   };
 
   const handleSubmit = e => {
@@ -47,9 +41,12 @@ export const ContactEditor = () => {
       number: formatNumber(number),
     };
 
+    // можно вынести в condition для thunk-а addContact
     if (!isContactExists(items, data)) return addContact(data);
     toast.error(ALREADY_EXISTS);
   };
+
+  const isAdding = /addContact/i.test(pendingAction);
 
   return (
     <Block style={{ padding: '15px' }}>
@@ -82,8 +79,8 @@ export const ContactEditor = () => {
         />
 
         <Button type="submit">
-          {isWorking && <SpinnerLines width={20} strokeColor="white" />}
-          {!isWorking && (
+          {isAdding && <SpinnerLines width={20} strokeColor="white" />}
+          {!isAdding && (
             <>
               <IconUserPlus size="20px" />
               Add
