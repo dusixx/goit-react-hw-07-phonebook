@@ -5,8 +5,7 @@ export const useDispatchedActions = actions => {
   const dispatch = useDispatch();
   const actionsRef = useRef(actions);
 
-  const dispatchedActions = useMemo(() => {
-    console.log('dispatchedActions');
+  return useMemo(() => {
     return Object.entries(actionsRef.current).reduce(
       (res, [actionName, func]) => {
         const name = actionName.replace(/thunk$/i, '');
@@ -17,6 +16,4 @@ export const useDispatchedActions = actions => {
       {}
     );
   }, [dispatch]);
-
-  return dispatchedActions;
 };

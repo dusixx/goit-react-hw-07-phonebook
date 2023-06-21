@@ -17,6 +17,11 @@ const selectFilteredContacts = createSelector(
 
 // hooks
 
+/* 
+  !! Для удобства - оптимальнее штатно использовать
+  санки и селекторы в целевых компонентах
+*/
+
 export const useFilter = () => {
   const filter = useSelector(selectFilter);
   const dispatchedActions = useDispatchedActions(filterActions);
@@ -28,8 +33,6 @@ export const useContacts = () => {
   const contacts = useSelector(selectContacts);
   const filtered = useSelector(selectFilteredContacts);
   const dispatchedThunks = useDispatchedActions(contactThunks);
-
-  console.log('useContacts');
 
   return {
     ...contacts,
