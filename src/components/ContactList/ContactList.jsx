@@ -10,6 +10,9 @@ import { Processing } from './ContactList.styled';
 import { SpinnerLines } from 'components/SpinnerLines/SpinnerLines';
 
 const ACTION_NOT_SUPPORTED = 'Action not supported';
+const deletedItemStyle = {
+  backgroundColor: 'rgb(255 0 0 / 0.1)',
+};
 
 //
 // ContactList
@@ -31,10 +34,6 @@ export const ContactList = ({ controlsHeight, rowHeight }) => {
   };
 
   if (!filtered.length) return null;
-
-  const deletedItemStyle = {
-    backgroundColor: 'rgb(255 0 0 / 0.1)',
-  };
 
   return (
     <Block maxHeight="70vh">
