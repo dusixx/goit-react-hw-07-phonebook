@@ -3,14 +3,14 @@ import { Controls } from './Controls/Controls';
 import { controlsData } from './controlsData';
 import { List, Item, Column } from './ContactList.styled';
 import { Block } from 'styles/shared';
-import { useFilteredContacts } from 'hooks/useFilteredContacts';
+import { useContacts } from 'redux/hooks';
 
 //
 // ContactList
 //
 
 export const ContactList = ({ controlsHeight, rowHeight }) => {
-  const { filtered } = useFilteredContacts();
+  const { filtered } = useContacts();
 
   if (!filtered.length) return null;
 
