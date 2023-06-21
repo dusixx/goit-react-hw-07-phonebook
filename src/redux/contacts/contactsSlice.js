@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import * as thunk from './contactsThunks';
-import * as handler from './handlerrs';
+import * as handler from './handlers';
 
 const initialState = {
   items: [],
