@@ -16,8 +16,7 @@ const ACTION_NOT_SUPPORTED = 'Action not supported';
 //
 
 export const ContactList = ({ controlsHeight, rowHeight }) => {
-  const { filtered, deleteContact } = useContacts();
-  const [isWorking, setIsWorking] = useState(false);
+  const { filtered, deleteContact, pendingAction } = useContacts();
   const [clickedId, setClickedId] = useState(null);
 
   const handleControlClick = (id, name) => {
@@ -25,19 +24,15 @@ export const ContactList = ({ controlsHeight, rowHeight }) => {
 
     switch (name) {
       case 'delete':
-        setIsWorking(true);
-
-        return deleteContact(id).finally(() => {
-          setIsWorking(false);
-          setClickedId(null);
-        });
-
+        return deleteContact(id).finally(() => setClickedId(null));
       default:
         toast.warn(ACTION_NOT_SUPPORTED);
     }
   };
 
   if (!filtered.length) return null;
+
+  const isDeleting = /deleteContact/i.test(pendingAction);
 
   return (
     <Block maxHeight="70vh">
@@ -47,9 +42,8 @@ export const ContactList = ({ controlsHeight, rowHeight }) => {
             <Item key={id} height={rowHeight}>
               <Column>{name}</Column>
               <Column>{number}</Column>
-
               <Column>
-                {clickedId === id && isWorking ? (
+                {clickedId === id && isDeleting ? (
                   <Processing>
                     <SpinnerLines width={20} />
                     Deleting...
