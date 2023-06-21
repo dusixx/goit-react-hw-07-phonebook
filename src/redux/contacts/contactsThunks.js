@@ -9,17 +9,17 @@ const payloadCreator = fetchProc => async (arg, thunkApi) => {
   }
 };
 
-export const fetchContactsThunk = createAsyncThunk(
+export const fetchAll = createAsyncThunk(
   'contacts/fetchAll',
   payloadCreator(api.fetchContacts)
 );
 
-export const addContactThunk = createAsyncThunk(
+export const addContact = createAsyncThunk(
   'contacts/addContact',
   payloadCreator(api.addContact)
 );
 
-export const deleteContactThunk = createAsyncThunk(
+export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   payloadCreator(api.deleteContact)
 );

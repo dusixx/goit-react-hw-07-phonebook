@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import * as contactThunks from './contactsThunks';
+import * as contactThunks from './contacts/contactsThunks';
 import { filterActions } from './filterSlice';
 import { useDispatchedActions } from 'hooks/useDispatchedActions';
 import { createSelector } from '@reduxjs/toolkit';
